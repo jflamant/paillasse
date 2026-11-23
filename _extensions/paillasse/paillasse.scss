@@ -1,0 +1,276 @@
+/*-- scss:defaults --*/
+
+// Paillasse: a Quarto reveal.js theme for research presentations.
+// https://github.com/jflamant/paillasse — CC BY 4.0
+// Adapted from soles-revealjs by Januar Harianto (CC BY 4.0),
+// https://github.com/usyd-soles-edu/soles-revealjs
+// Colour palette inspired by the CNRS visual identity (unofficial).
+//
+// Every variable below is !default: to customise one, set it in your own
+// .scss file (see the README).
+
+// Palette ------------------------------------------------------------------
+
+$pal-blue:   #003a70 !default;  // primary: headings, section dividers
+$pal-red:    #e1000f !default;  // accent: links, alerts
+$pal-cyan:   #00a3e0 !default;
+$pal-green:  #009640 !default;
+$pal-orange: #f39200 !default;
+$pal-purple: #662483 !default;
+$pal-yellow: #f2c500 !default;
+
+$charcoal:   #202124 !default;  // body text
+$paper:      #ffffff !default;  // slide background
+$code-paper: #e9eef3 !default;  // code background
+
+// Ordered palette: generates the .fg-* classes and the --pal-* CSS variables.
+$palette: (
+  "blue": $pal-blue,
+  "cyan": $pal-cyan,
+  "orange": $pal-orange,
+  "green": $pal-green,
+  "purple": $pal-purple,
+  "red": $pal-red,
+  "yellow": $pal-yellow
+) !default;
+
+// Highlights (.hl-*): name, background, text colour.
+// Each pair has a contrast of at least 4.5:1 (green is darkened for this).
+$highlights: (
+  "blue"   $pal-blue   white,
+  "cyan"   $pal-cyan   $charcoal,
+  "orange" $pal-orange $charcoal,
+  "green"  #008036     white,
+  "purple" $pal-purple white,
+  "red"    $pal-red    white,
+  "yellow" $pal-yellow $charcoal
+) !default;
+
+// Section dividers (level-1 "#" slides, see paillasse.lua)
+$divider-bg:     $pal-blue !default;
+$divider-accent: $pal-cyan !default;  // short rule under the divider title
+
+// Fonts --------------------------------------------------------------------
+// Source Sans Pro (regular, semibold, italics) ships with Quarto and works
+// offline. JetBrains Mono is loaded from Google Fonts; without internet, code
+// falls back to Menlo or Consolas.
+// Font names must not start a word with a digit (e.g. "Source Sans 3"):
+// Quarto removes the quotes, which makes such a name invalid CSS.
+
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+$font-family-sans-serif: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif !default;
+$font-family-monospace: "JetBrains Mono", Menlo, Consolas, monospace !default;
+$presentation-heading-font: $font-family-sans-serif !default;
+
+// Sizes and layout ---------------------------------------------------------
+
+$presentation-font-size-root: 30px !default;
+$presentation-h1-font-size: 2em !default;
+$presentation-h2-font-size: 1.6em !default;
+$presentation-h3-font-size: 1.2em !default;
+$presentation-h4-font-size: 1.1em !default;
+$presentation-heading-font-weight: 600 !default;
+$presentation-heading-line-height: 1.2 !default;
+$presentation-heading-color: $pal-blue !default;
+$presentation-title-slide-text-align: left !default;
+$presentation-list-bullet-color: $pal-cyan !default;
+
+// Colours ------------------------------------------------------------------
+
+$body-bg: $paper !default;
+$body-color: $charcoal !default;
+$link-color: $pal-red !default;
+$selection-bg: $pal-yellow !default;
+$selection-color: $charcoal !default;
+
+$code-color: $charcoal !default;
+$code-bg: $code-paper !default;
+$code-block-bg: $code-paper !default;
+$code-block-color: $charcoal !default;
+$code-block-border-color: $paper !default;
+$code-block-font-size: 0.7em !default;
+
+$callout-color-note: $pal-blue !default;
+$callout-color-tip: $pal-green !default;
+$callout-color-important: $pal-red !default;
+$callout-color-caution: $pal-orange !default;
+$callout-color-warning: $pal-yellow !default;
+
+
+/*-- scss:rules --*/
+
+:root {
+  @each $name, $color in $palette {
+    --pal-#{$name}: #{$color};
+  }
+  --paillasse-divider-bg: #{$divider-bg};
+}
+
+.reveal p {
+  margin-top: 0;
+}
+
+// Title slide --------------------------------------------------------------
+
+#title-slide {
+  .title {
+    font-size: 2em;
+    font-weight: normal;
+  }
+
+  .subtitle {
+    color: $charcoal;
+    margin-top: 0;
+    font-weight: normal;
+  }
+
+  .quarto-title-author-name {
+    color: $body-color;
+  }
+
+  .quarto-title-affiliation,
+  .quarto-title-author-email {
+    font-style: italic;
+  }
+
+  .quarto-title-authors {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.2em 2em;
+
+    .quarto-title-author {
+      padding: 0;
+    }
+  }
+}
+
+// Logos listed under `title-logos` in the document YAML
+.reveal .quarto-title-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1em 1.5em;
+  margin-top: 1.5em;
+
+  img {
+    height: 75px;
+    width: auto;
+    margin: 0;
+  }
+}
+
+// Headings and slide number ------------------------------------------------
+
+.reveal h3,
+.reveal h4 {
+  margin-top: 1.25em;
+}
+
+.reveal .slide-number:not(.has-dark-background) {
+  color: $pal-blue;
+}
+
+// Also covers a deck opened directly on a divider (no slide change yet)
+.reveal:has(section.divider.present) .slide-number,
+.reveal:has(section.divider.present) .footer {
+  color: $dark-bg-text-color;
+}
+
+// Section dividers -----------------------------------------------------------
+// paillasse.lua gives level-1 slides the .divider class and a background
+// colour; reveal.js then marks them .has-dark-background (white text).
+
+.reveal .slides section.divider {
+  text-align: left;
+
+  h1::after {
+    content: "";
+    display: block;
+    width: 2.5em;
+    height: 0.1em;
+    margin-top: 0.35em;
+    background-color: $divider-accent;
+  }
+}
+
+// Logo on content slides (`logo:` option): hidden on the title slide and
+// on section dividers, where it would compete with the title.
+.reveal:has(#title-slide.present) .slide-logo,
+.reveal:has(section.divider.present) .slide-logo {
+  display: none;
+}
+
+// Callouts -----------------------------------------------------------------
+// Quarto shrinks callouts to 0.7em; this keeps them readable from the back.
+
+.reveal .slides div.callout {
+  font-size: 0.85em;
+}
+
+// Code blocks: leave some space before the next paragraph, and use the
+// same background as the code itself. (.slides outranks the inline
+// styles Quarto adds after the theme.)
+.reveal .slides div.sourceCode {
+  margin-bottom: 0.5em;
+  background-color: $code-block-bg;
+}
+
+// Colour classes -------------------------------------------------------------
+// [text]{.fg-blue}: coloured text (also sets fill/stroke for inline SVG).
+// [text]{.hl-red}:  highlighted text, white or dark text depending on colour.
+
+@each $name, $color in $palette {
+  .fg-#{$name} {
+    color: $color;
+    fill: $color;
+    stroke: $color;
+  }
+}
+
+@each $name, $bg, $fg in $highlights {
+  .hl-#{$name} {
+    background-color: $bg;
+    color: $fg;
+    padding: 0 0.25em;
+    border-radius: 0.2em;
+  }
+}
+
+// Kept from the SOLES template
+.alert {
+  @extend .hl-red;
+}
+
+// Lists ----------------------------------------------------------------------
+
+// Block lists: reveal.js uses inline-block, which puts two consecutive
+// lists side by side.
+.reveal .slide ul,
+.reveal .slide ol {
+  display: block;
+  margin-bottom: 0.5em;
+  padding-left: 16px;
+}
+
+// Quarto's default theme ignores $presentation-list-bullet-color,
+// so the markers are coloured here.
+.reveal ul li::marker,
+.reveal ol li::marker {
+  color: $presentation-list-bullet-color;
+}
+
+// Nested bullet items use an arrow
+.reveal ul ul {
+  list-style: none;
+
+  li::before {
+    content: "\279F";
+    color: $presentation-list-bullet-color;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+    margin-right: 0.5em;
+  }
+}

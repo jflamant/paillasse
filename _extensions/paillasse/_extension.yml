@@ -1,0 +1,18 @@
+title: Paillasse
+author: Julien Flamant
+version: 1.0.0
+quarto-required: ">=1.4.0"
+contributes:
+  formats:
+    revealjs:
+      theme: [default, paillasse.scss]
+      template-partials:
+        - title-slide.html
+      filters:
+        - paillasse.lua
+      width: 1280
+      height: 720
+      slide-number: c/t
+      transition: none
+      navigation-mode: linear
+      date-format: long

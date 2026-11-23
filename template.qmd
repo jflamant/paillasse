@@ -1,0 +1,171 @@
+---
+title: "Presentation title"
+subtitle: "A subtitle for your talk"
+author:
+  - name: "Author 1"
+    affiliations: "Laboratory, University"
+    email: "firstname.lastname@institution.fr"
+date: today
+format: paillasse-revealjs
+
+# Logos on the title slide, left to right (paths relative to this file).
+# These are examples: put your own institutions' logos in logos/ and list them here.
+title-logos:
+  - src: logos/CNRS.png
+    alt: CNRS
+  - src: logos/UL.png
+    alt: Université de Lorraine
+  - src: logos/CRAN.jpg
+    alt: CRAN
+
+# Optional settings: remove the leading # to use them
+# logo: logos/CRAN.jpg              # small logo on content slides
+# footer: "Conference name, 2026"   # text at the bottom of every slide
+# lang: fr                          # dates and Quarto labels in French
+# section-divider: false            # plain "#" slides, no coloured background
+---
+
+# Getting started
+
+## This template
+
+Paillasse is a [Quarto](https://quarto.org) theme for reveal.js slides: 16:9 slides, a clean left-aligned layout, and a colour palette inspired by the CNRS visual identity.
+
+- Write your slides in this file, then run `quarto preview` or `quarto render`.
+- Settings live in the YAML header at the top: title, authors, logos, footer, language.
+- `##` headings start a new slide. `#` headings create a **section divider**, like the previous slide.
+
+## Logos
+
+Title-slide logos are listed under `title-logos` in the YAML header:
+
+```yaml
+title-logos:
+  - src: logos/CNRS.png
+    alt: CNRS
+  - src: logos/my-lab.png
+    alt: My lab
+```
+
+To show a small logo on every content slide, add `logo: logos/my-lab.png`. It is hidden on the title slide and on section dividers. `footer: "..."` adds text at the bottom of each slide.
+
+# Writing slides
+
+## Text and lists
+
+Markdown gives you **bold**, *italic*, `code`, [links](https://quarto.org) and footnotes[^1].
+
+- Leave an empty line before a list, otherwise it joins the paragraph above.
+- Indent an item by two spaces to nest it:
+  - nested items get an arrow,
+  - in the palette's cyan.
+
+1. Numbered lists use the same colour.
+2. A second item.
+
+[^1]: Footnotes go at the bottom of the slide.
+
+## Colours
+
+Coloured text with `.fg-*`: [blue]{.fg-blue}, [red]{.fg-red}, [purple]{.fg-purple}.
+
+Highlights with `.hl-*`: [blue]{.hl-blue} [cyan]{.hl-cyan} [orange]{.hl-orange} [green]{.hl-green} [purple]{.hl-purple} [red]{.hl-red} [yellow]{.hl-yellow}
+
+::: {.callout-tip}
+Cyan, orange, green and yellow are too light for text on a white background, especially on a projector: use them for highlights, figures and shapes.
+:::
+
+In inline SVG, `class="fg-orange"` sets fill and stroke; in any CSS, `var(--pal-orange)` gives the colour. `.alert` is kept as a shortcut for `.hl-red`.
+
+## Two columns
+
+:::: {.columns}
+::: {.column width="50%"}
+### Left
+
+- Columns are set with `.columns` and `.column` divs.
+- Widths are in percent.
+:::
+
+::: {.column width="50%"}
+### Right
+
+- Put text, a figure or code in each column.
+- Widths should add up to 100%.
+:::
+::::
+
+## Equations
+
+Inline maths goes between single dollars: a signal $x[n]$ of length $N$.
+
+Display maths goes between double dollars. Add a label after the closing `$$` to number the equation:
+
+$$
+X[k] = \sum_{n=0}^{N-1} x[n] \, e^{-2 i \pi k n / N}, \qquad k = 0, \dots, N-1
+$$ {#eq-dft}
+
+Then refer to it in the text: @eq-dft defines the discrete Fourier transform.
+
+## Code and figures
+
+To give figures the same colours as the slides, set the palette once in Python:
+
+```python
+import matplotlib.pyplot as plt
+from cycler import cycler
+
+palette = ["#003a70", "#00a3e0", "#f39200", "#009640",
+           "#662483", "#e1000f", "#f2c500"]
+plt.rcParams["axes.prop_cycle"] = cycler(color=palette)
+```
+
+In R, use `scale_colour_manual(values = palette)` with the same colours.
+
+## Callouts
+
+::: {.callout-note}
+Notes use the primary blue.
+:::
+
+::: {.callout-important}
+Important points use the accent red.
+:::
+
+::: {.callout-warning}
+Warnings use yellow. Read more in the [Quarto documentation](https://quarto.org/docs/authoring/callouts.html).
+:::
+
+# Presenting
+
+## Step by step
+
+Content can appear one piece at a time.
+
+. . .
+
+- Use `. . .` on its own line to pause,
+
+. . .
+
+- or wrap a list in `::: incremental` to reveal it item by item.
+
+## Section dividers
+
+Every `#` heading becomes a divider slide with a coloured background.
+
+- Skip it for one section with `# Title {.no-divider}`.
+- Turn dividers off with `section-divider: false` in the YAML header.
+- Change their colour with `section-divider-color: "#662483"`.
+
+## PDF export
+
+Open the slides in Chrome, Edge or another Chromium-based browser and press `E`: the slides switch to a print layout, one page per slide.
+
+Then print to PDF. In the print dialog, set the margins to **None** so that each slide fills its page.
+
+Press `E` again to return to the normal view.
+
+# Thank you
+
+Slides made with [Paillasse](https://github.com/jflamant/paillasse).
