@@ -23,7 +23,7 @@ You need [Quarto](https://quarto.org/docs/get-started/) 1.4 or later (tested wit
 quarto use template jflamant/paillasse
 ```
 
-This creates `<folder-name>.qmd` (an example deck to edit), a `logos/` folder and the `_extensions/paillasse/` extension.
+This creates `<folder-name>.qmd` (an example deck to edit), a `logos/` folder, and the Paillasse extension in `_extensions/`.
 
 **Replace the example logos.** The logos in `logos/` (CNRS, Université de Lorraine, CRAN) are those of the template's author. Put your own institutions' logos in that folder and list them under `title-logos` in the YAML header (see [Options](#options)).
 
@@ -137,7 +137,9 @@ Open the slides in Chrome, Edge or another Chromium-based browser and press `E`:
 
 ## Credits and license
 
-Paillasse is adapted from [soles-revealjs](https://github.com/usyd-soles-edu/soles-revealjs) by Januar Harianto. Both are licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); see [LICENSE](LICENSE).
+© 2026 Julien Flamant. Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); the full text is in [LICENSE](LICENSE).
+
+Paillasse is adapted from [soles-revealjs](https://github.com/usyd-soles-edu/soles-revealjs) by Januar Harianto, also licensed under CC BY 4.0. Changes: new colour palette, configurable title-slide logos, section divider slides, 16:9 format, rewritten theme and styling classes, new example slides.
 
 If you share slides made with Paillasse, please keep a short credit, like the one on the last slide of the example deck.
 

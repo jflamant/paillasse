@@ -1,20 +1,3 @@
-Paillasse: a Quarto reveal.js template
-Copyright (c) 2026 Julien Flamant
-
-This work is licensed under the Creative Commons Attribution 4.0
-International License (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
-The full license text is reproduced below.
-
-Paillasse is adapted from soles-revealjs by Januar Harianto
-(https://github.com/usyd-soles-edu/soles-revealjs), licensed under CC BY 4.0.
-Changes: new colour palette, configurable title-slide logos, section divider
-slides, 16:9 format, rewritten theme and styling classes, new example slides.
-
-The logos in the logos/ folder are trademarks of their respective
-institutions. They are NOT covered by this license.
-
------------------------------------------------------------------------
-
 Attribution 4.0 International
 
 =======================================================================
