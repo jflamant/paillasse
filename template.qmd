@@ -168,4 +168,4 @@ Press `E` again to return to the normal view.
 
 # Thank you
 
-Slides made with [Paillasse](https://github.com/jflamant/paillasse).
+Slides made with [Paillasse](https://github.com/jflamant/paillasse), adapted from [soles-revealjs](https://github.com/usyd-soles-edu/soles-revealjs).
