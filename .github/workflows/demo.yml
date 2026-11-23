@@ -1,0 +1,57 @@
+# Renders the example deck (template.qmd) and publishes it to GitHub Pages:
+# https://jflamant.github.io/paillasse/
+#
+# One-time setup: Settings > Pages > Build and deployment > Source: "GitHub Actions".
+
+name: Demo
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - template.qmd
+      - _extensions/**
+      - logos/**
+      - .github/workflows/demo.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 1.8.25
+
+      # Render as index.qmd so the deck is served at the site root.
+      - name: Render demo
+        run: |
+          cp template.qmd index.qmd
+          quarto render index.qmd
+          mkdir _site
+          cp -r index.html index_files logos _site/
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

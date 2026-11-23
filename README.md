@@ -6,6 +6,8 @@ A [Quarto](https://quarto.org) reveal.js template for research talks: 16:9 slide
 
 > **Unofficial.** Paillasse is not affiliated with or endorsed by the CNRS.
 
+**[See the demo](https://jflamant.github.io/paillasse/)**: the example deck from `template.qmd`, rendered with Paillasse.
+
 <p>
   <img src="screenshots/1-title-slide.png" width="49%" alt="Title slide with three institution logos">
   <img src="screenshots/2-getting-started.png" width="49%" alt="Section divider slide on a dark blue background">
