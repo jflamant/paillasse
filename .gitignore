@@ -1,0 +1,8 @@
+.DS_Store
+.quarto/
+/.luarc.json
+**/*.quarto_ipynb
+
+# rendered slides (root only: _extensions/ contains an .html partial)
+/*.html
+*_files/
